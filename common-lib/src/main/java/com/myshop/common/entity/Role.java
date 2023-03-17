@@ -2,6 +2,8 @@ package com.myshop.common.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -16,6 +18,10 @@ public class Role {
     private String description;
 
     public Role() {
+    }
+
+    public Role(Integer id) {
+        this.id = id;
     }
 
     public Role(String name) {
@@ -51,4 +57,22 @@ public class Role {
         this.description = description;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Role role)) return false;
+        return getId().equals(role.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
