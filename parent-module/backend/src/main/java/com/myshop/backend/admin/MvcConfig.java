@@ -19,9 +19,9 @@ public class MvcConfig implements WebMvcConfigurer {
 
         registry.addResourceHandler("/" + dirName + "/**")
                 // exposes the file system location where the s
-                .addResourceLocations("file://" + userPhotosPath + "/");
+                .addResourceLocations("file:" + userPhotosPath + "/");
     }
-    /* A file URI takes the form of file://host/path (note "file://" not "file:/" )
+    /* A file URI takes the form of "file:" + userPhotosPath + "/ or file://host/path (note "file://" not "file:/" )
 where host is the fully qualified domain name of the system on which the path is accessible, and path is a hierarchical
  directory path of the form directory/directory/.../name. If host is omitted, it is taken to be "localhost", the
  machine from which the URL is being interpreted. Note that when omitting host, the slash is not omitted
