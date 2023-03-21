@@ -166,5 +166,12 @@ public String listByPage(
         UserCsvExporter exporter = new UserCsvExporter();
         exporter.export(listUsers, response);
     }
+    @GetMapping("/users/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        List<User> listUsers = service.listAll();
+
+        UserExcelExporter exporter = new UserExcelExporter();
+        exporter.export(listUsers, response);
+    }
 }
 
