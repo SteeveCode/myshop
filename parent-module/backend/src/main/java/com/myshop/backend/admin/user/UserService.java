@@ -19,18 +19,14 @@ import java.util.NoSuchElementException;
 @Transactional
 public class UserService {
     public static final int USERS_PER_PAGE = 4;
-
     @Autowired
     private UserRepository userRepo;
-
     @Autowired
     private RoleRepository roleRepo;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-
     public List<User> listAll() {
-        return (List<User>) userRepo.findAll();
+        return (List<User>) userRepo.findAll(Sort.by("firstName").ascending());
     }
 
     public Page<User> listByPage(int pageNum, String sortField, String sortDir, String keyword) {

@@ -5,6 +5,7 @@ import com.myshop.backend.admin.user.UserNotFoundException;
 import com.myshop.backend.admin.user.UserService;
 import com.myshop.common.entity.Role;
 import com.myshop.common.entity.User;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -159,4 +160,11 @@ public String listByPage(
 
         return "redirect:/users";
     }
+    @GetMapping("/users/export/csv")
+    public void exportToCSV(HttpServletResponse response) throws IOException {
+        List<User> listUsers = service.listAll();
+        UserCsvExporter exporter = new UserCsvExporter();
+        exporter.export(listUsers, response);
+    }
 }
+
