@@ -40,7 +40,11 @@ public class WebSecurityConfig {
                 .loginPage("/login")
                 .usernameParameter("email")
                 .permitAll()
-                .and().logout().permitAll();;
+                .and().logout().permitAll()
+                .and().rememberMe().key("AbcDefgHijklmnopqrs_1234567890")
+        //restarting the server will not require login again because a new remember-me key is not created because
+        // we used the key() method and specified a key in addition to the rememberMe() method
+                .tokenValiditySeconds(3*24*60*60);
                return http.build();
     }
     @Bean
