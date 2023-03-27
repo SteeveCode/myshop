@@ -1,5 +1,6 @@
-package com.myshop.backend.admin.user;
+package com.myshop.backend.admin.user.export;
 
+import com.myshop.backend.admin.user.AbstractExporter;
 import com.myshop.common.entity.User;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
