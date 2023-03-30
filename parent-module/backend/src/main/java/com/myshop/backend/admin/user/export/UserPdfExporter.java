@@ -5,7 +5,6 @@ import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import com.myshop.backend.admin.user.AbstractExporter;
 import com.myshop.common.entity.User;
 import jakarta.servlet.http.HttpServletResponse;
 

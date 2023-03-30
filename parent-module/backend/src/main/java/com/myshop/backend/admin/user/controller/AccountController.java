@@ -1,7 +1,8 @@
-package com.myshop.backend.admin.user;
+package com.myshop.backend.admin.user.controller;
 
 import com.myshop.backend.admin.FileUploadUtil;
 import com.myshop.backend.admin.security.MyshopUserDetails;
+import com.myshop.backend.admin.user.UserService;
 import com.myshop.common.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +29,7 @@ public class AccountController {
         User user = service.getByEmail(email); // get most recent data about the user from the db
         model.addAttribute("user", user);
 
-        return "account_form";
+        return "users/account_form";
 
     }
     @PostMapping("/account/update")

@@ -1,6 +1,8 @@
-package com.myshop.backend.admin.user;
+package com.myshop.backend.admin.user.controller;
 
 import com.myshop.backend.admin.FileUploadUtil;
+import com.myshop.backend.admin.user.UserNotFoundException;
+import com.myshop.backend.admin.user.UserService;
 import com.myshop.backend.admin.user.export.UserCsvExporter;
 import com.myshop.backend.admin.user.export.UserExcelExporter;
 import com.myshop.backend.admin.user.export.UserPdfExporter;
@@ -73,7 +75,7 @@ public String listByPage(
     model.addAttribute("reverseSortDir", reverseSortDir);
     model.addAttribute("keyword", keyword);
 
-    return "users";
+    return "users/users";
 }
 
     @GetMapping("/users/new")
@@ -87,7 +89,7 @@ public String listByPage(
         model.addAttribute("listRoles", listRoles);
         model.addAttribute("pageTitle", "Create New User");
 
-        return "user_form";
+        return "users/user_form";
     }
 
     @PostMapping("/users/save")
@@ -131,7 +133,7 @@ public String listByPage(
             model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
             model.addAttribute("listRoles", listRoles);
 
-            return "user_form";
+            return "users/user_form";
         } catch (UserNotFoundException ex) {
             redirectAttributes.addFlashAttribute("message", ex.getMessage());
             return "redirect:/users";
