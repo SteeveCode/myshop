@@ -1,6 +1,5 @@
 package com.myshop.backend.admin.category;
 
-
 import com.myshop.common.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +16,11 @@ public class CategoryService {
     public List<Category> listAll() {
         return (List<Category>) repo.findAll();
     }
+
+    public Category save(Category category) {
+        return repo.save(category);
+    }
+
 
     public List<Category> listCategoriesUsedInForm() {
         List<Category> categoriesUsedInForm = new ArrayList<>();
