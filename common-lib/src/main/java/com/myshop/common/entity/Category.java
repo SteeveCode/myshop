@@ -3,15 +3,8 @@ package com.myshop.common.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -52,10 +45,28 @@ public class Category {
 
 		return copyCategory;
 	}
-	// use of factory method to copy name and id field from an existing constructor. used in CategoryService class
+
 	public static Category copyIdAndName(Integer id, String name) {
 		Category copyCategory = new Category();
 		copyCategory.setId(id);
+		copyCategory.setName(name);
+
+		return copyCategory;
+	}
+
+	public static Category copyFull(Category category) {
+		Category copyCategory = new Category();
+		copyCategory.setId(category.getId());
+		copyCategory.setName(category.getName());
+		copyCategory.setImage(category.getImage());
+		copyCategory.setAlias(category.getAlias());
+		copyCategory.setEnabled(category.isEnabled());
+
+		return copyCategory;
+	}
+
+	public static Category copyFull(Category category, String name) {
+		Category copyCategory = Category.copyFull(category);
 		copyCategory.setName(name);
 
 		return copyCategory;
@@ -128,5 +139,10 @@ public class Category {
 		this.children = children;
 	}
 
-
+	@Transient
+	public String getImagePath() {
+		return "/category-images/" + this.id + "/" + this.image;
+	}
 }
+
+
