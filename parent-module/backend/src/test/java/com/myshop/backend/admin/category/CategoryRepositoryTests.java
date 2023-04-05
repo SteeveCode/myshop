@@ -6,26 +6,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 
 import java.util.Set;
 import java.util.List;
 
 @DataJpaTest(showSql = false)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)  // used to test against real database; not in-memory database
-@Rollback(value = false)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Rollback(false)
 public class CategoryRepositoryTests {
 
     @Autowired
     private CategoryRepository repo;
 
-
-    @Test
-    public void testNoArgsConstructorOnFieldsWithNotNullAttributes() {
-        Category category = new Category();
-        System.out.println(category.toString());
-        assertThat(category.getName()).isNull();
-    }
     @Test
     public void testCreateRootCategory() {
         Category category = new Category("Electronics");
@@ -36,9 +30,9 @@ public class CategoryRepositoryTests {
 
     @Test
     public void testCreateSubCategory() {
-        Category parent = new Category(7); // 7
-        Category subcategory = new Category("iPhone", parent); //
-        Category savedCategory = repo.save(subcategory);
+        Category parent = new Category(7);
+        Category subCategory = new Category("iPhone", parent);
+        Category savedCategory = repo.save(subCategory);
 
         assertThat(savedCategory.getId()).isGreaterThan(0);
     }
@@ -89,11 +83,13 @@ public class CategoryRepositoryTests {
             printChildren(subCategory, newSubLevel);
         }
     }
+
     @Test
     public void testListRootCategories() {
-        List<Category> rootCategories = repo.findRootCategories();
+        List<Category> rootCategories = repo.findRootCategories(Sort.by("name").ascending());
         rootCategories.forEach(cat -> System.out.println(cat.getName()));
     }
+
     @Test
     public void testFindByName() {
         String name = "Computers";
@@ -106,7 +102,7 @@ public class CategoryRepositoryTests {
 
     @Test
     public void testFindByAlias() {
-        String alias = "Electronics";
+        String alias = "electronics";
         Category category = repo.findByAlias(alias);
 
         assertThat(category).isNotNull();

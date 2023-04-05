@@ -36,7 +36,7 @@ public class Category {
 	public Category(Integer id) {
 		this.id = id;
 	}
-	// use of factory method to copy name and id field from an existing constructor. used in CategoryService class
+
 	public static Category copyIdAndName(Category category) {
 		Category copyCategory = new Category();
 		copyCategory.setId(category.getId());
@@ -164,5 +164,9 @@ public class Category {
 	@Transient
 	private boolean hasChildren;
 
-}
+	@Override
+	public String toString() {
+		return this.name;
+	}
 
+}
