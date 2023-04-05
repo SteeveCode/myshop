@@ -3,6 +3,7 @@ package com.myshop.backend.admin.category;
 import com.myshop.backend.admin.FileUploadUtil;
 import com.myshop.common.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -22,12 +23,21 @@ public class CategoryController {
     private CategoryService service;
 
     @GetMapping("/categories")
-    public String listAll(Model model) {
-        List<Category> listCategories = service.listAll();
+    public String listAll(@Param("sortDir") String sortDir, Model model) {
+        if (sortDir ==  null || sortDir.isEmpty()) {
+            sortDir = "asc";
+        }
+
+        List<Category> listCategories = service.listAll(sortDir);
+
+        String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
+
         model.addAttribute("listCategories", listCategories);
+        model.addAttribute("reverseSortDir", reverseSortDir);
 
         return "categories/categories";
     }
+
     @GetMapping("/categories/new")
     public String newCategory(Model model) {
         List<Category> listCategories = service.listCategoriesUsedInForm();
@@ -38,6 +48,7 @@ public class CategoryController {
 
         return "categories/category_form";
     }
+
     @PostMapping("/categories/save")
     public String saveCategory(Category category,
                                @RequestParam("fileImage") MultipartFile multipartFile,
@@ -58,6 +69,7 @@ public class CategoryController {
         ra.addFlashAttribute("message", "The category has been saved successfully.");
         return "redirect:/categories";
     }
+
     @GetMapping("/categories/edit/{id}")
     public String editCategory(@PathVariable(name = "id") Integer id, Model model,
                                RedirectAttributes ra) {
