@@ -3,15 +3,7 @@ package com.myshop.common.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "brands")
@@ -80,4 +72,10 @@ public class Brand {
 		return "Brand [id=" + id + ", name=" + name + ", categories=" + categories + "]";
 	}
 
+	@Transient
+	public String getLogoPath() {
+		if (this.id == null) return "/images/image-thumbnail.png";
+
+		return "/brand-logos/" + this.id + "/" + this.logo;
+	}
 }
