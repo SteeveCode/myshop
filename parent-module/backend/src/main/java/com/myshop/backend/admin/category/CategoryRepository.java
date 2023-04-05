@@ -9,13 +9,16 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
-        @Query("SELECT c FROM Category c WHERE c.parent.id is NULL")
-        public List<Category> findRootCategories(Sort sort);
-        public Category findByName(String name);
+                @Query("SELECT c FROM Category c WHERE c.parent.id is NULL")
+                public List<Category> findRootCategories(Sort sort);
 
-        public Category findByAlias(String alias);
-        @Query("UPDATE Category c SET c.enabled = ?2 WHERE c.id = ?1")
-        @Modifying
-        public void updateEnabledStatus(Integer id, boolean enabled);
+                public Long countById(Integer id);
 
-}
+                public Category findByName(String name);
+
+                public Category findByAlias(String alias);
+
+                @Query("UPDATE Category c SET c.enabled = ?2 WHERE c.id = ?1")
+                @Modifying
+                public void updateEnabledStatus(Integer id, boolean enabled);
+        }
