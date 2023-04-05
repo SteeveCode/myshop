@@ -47,18 +47,20 @@
 				</tr>								
 			</thead>
 			<tbody>
-				<tr th:each="cat : ${listCategories}">
-					<td>[[${cat.id}]]</td>
-					<td><img th:src="@{${cat.imagePath}}" style="width: 100px" class="img-fluid"/></td>
-					<td>[[${cat.name}]]</td>
-					<td>[[${cat.alias}]]</td>
-					<td>
-						<div th:replace="fragments :: category_status" />
-					</td>
-					<td>
-						<div th:replace="fragments :: category_actions" />
-					</td>					
-				</tr>
+			<tr th:each="cat : ${listCategories}">
+				<td>[[${cat.id}]]</td>
+				<td>
+					<img th:src="@{${cat.imagePath}}" style="width: 100px" class="img-fluid"/>
+				</td>
+				<td>[[${cat.name}]]</td>
+				<td>[[${cat.alias}]]</td>
+				<td>
+					<div th:replace="fragments :: category_status" />
+				</td>
+				<td>
+					<div th:replace="fragments :: category_actions" />
+				</td>
+			</tr>
 			</tbody>
 		</table>
 	</div>
