@@ -25,6 +25,13 @@ public class MvcConfig implements WebMvcConfigurer {
 
         registry.addResourceHandler("/category-images/**")
                 .addResourceLocations("file:" + categoryImagesPath + "/");
+
+        String brandLogosDirName = "../brand-logos";
+        Path brandLogosDir = Paths.get(brandLogosDirName);
+        String brandLogosPath = brandLogosDir.toFile().getAbsolutePath();
+
+        registry.addResourceHandler("/brand-logos/**")
+                .addResourceLocations("file:" + brandLogosPath + "/");
     }
     /* A file URI takes the form of "file:" + userPhotosPath + "/ or file://host/path (note "file://" not "file:/" )
 where host is the fully qualified domain name of the system on which the path is accessible, and path is a hierarchical
