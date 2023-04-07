@@ -6,8 +6,8 @@ $(document).ready(function() {
     $("#fileImage").change(function() {
         fileSize = this.files[0].size;
 
-        if (fileSize > 102400) { // 1048576
-            this.setCustomValidity("You must choose an image less than 1MB!");
+        if (fileSize > MAX_FILE_SIZE) {
+            this.setCustomValidity("You must choose an image less than " + MAX_FILE_SIZE + " bytes!");
             this.reportValidity();
         } else {
             this.setCustomValidity("");
@@ -26,6 +26,7 @@ function showImageThumbnail(fileInput) {
 
     reader.readAsDataURL(file);
 }
+
 function showModalDialog(title, message) {
     $("#modalTitle").text(title);
     $("#modalBody").text(message);

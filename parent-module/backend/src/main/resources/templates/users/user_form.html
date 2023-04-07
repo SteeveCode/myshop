@@ -2,15 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head th:replace="fragments :: page_head(${pageTitle}, 'none')"  />
 <html>
-<body class="container-fluid">
-  <div th:replace="navigation :: menu"/>
+<body>
+<div class="container-fluid">
+  <div th:replace="navigation :: menu"></div>
   <div>
     <h2>Manage Users | [[${pageTitle}]]</h2>
   </div>
 
   <form th:action="@{/users/save}" method="post" style="max-width: 700px; margin: 0 auto"
         enctype="multipart/form-data"
-        th:object="${user}" onsubmit="return checkEmailUnique(this);">  <!--enctype allows file upload on the form -->
+        th:object="${user}" onsubmit="return checkEmailUnique(this);">
     <input type="hidden" th:field="*{id}" />
     <div class="border border-secondary rounded p-3">
       <div class="form-group row">
@@ -87,11 +88,14 @@
 
   <div th:replace="modal_fragments :: modal_dialog"></div>
 
-  <div th:replace="fragments :: footer">
+  <div th:replace="fragments :: footer"></div>
 
 </div>
-<<script type="text/javascript">
+<script type="text/javascript">
+  MAX_FILE_SIZE = 102400; // 100KB
+
   moduleURL = "[[@{/users}]]";
+
   function checkEmailUnique(form) {
     url = "[[@{/users/check_email}]]";
     userEmail = $("#email").val();
