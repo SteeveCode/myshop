@@ -17,6 +17,7 @@ import com.myshop.common.entity.Brand;
 import com.myshop.common.entity.Category;
 import com.myshop.common.entity.Product;
 
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
 @Rollback(false)
@@ -108,5 +109,18 @@ public class ProductRepositoryTests {
 		Product savedProduct = repo.save(product);
 
 		assertThat(savedProduct.getImages().size()).isEqualTo(3);
+	}
+
+	@Test
+	public void testSaveProductWithDetails() {
+		Integer productId = 2;
+		Product product = repo.findById(productId).get();
+
+		product.addDetail("Device Memory", "128 GB");
+		product.addDetail("CPU Model", "MediaTek");
+		product.addDetail("OS", "Android 10");
+
+		Product savedProduct = repo.save(product);
+		assertThat(savedProduct.getDetails()).isNotEmpty();
 	}
 }
