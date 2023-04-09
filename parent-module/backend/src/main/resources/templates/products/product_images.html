@@ -20,7 +20,7 @@
 		<th:block th:each="productImage, status : ${product.images}">
 			<div class="col border m-3 p-2" th:id="'divExtraImage' + ${status.index}">
 				<div>
-					<label>Extra Image #[[${status.index + 1}]]: [[${productImage.name}]]</label>
+					<label>Extra Image #[[${status.index} + 1]]: [[${productImage.name}]]</label>
 					<a name="linkRemoveExtraImage"
 					   class="btn fas fa-times-circle fa-2x icon-dark float-right"
 					   title="Remove this image"></a>
@@ -35,16 +35,17 @@
 						   accept="image/png, image/jpeg" />
 				</div>
 
-				<input type="hidden" name="imageIDs" th:id="'imageId' + ${status.index}" />
-				<input type="hidden" name="imageNames" th:id="'imageName' + ${status.index}" />
+				<input type="hidden" name="imageIDs" th:id="'imageId' + ${status.index}"
+					   th:value="${productImage.id}" />
+				<input type="hidden" name="imageNames" th:id="'imageName' + ${status.index}"
+					   th:value="${productImage.name}" />
 
 			</div>
 		</th:block>
 
 		<div class="col border m-3 p-2" th:id="'divExtraImage' + ${numberOfExistingExtraImages}">
 			<div th:id="'extraImageHeader' + ${numberOfExistingExtraImages}">
-				<label>Extra Image #[[${numberOfExistingExtraImages} + 1]]:</label>
-
+				<label>Extra Image #[[${numberOfExistingExtraImages + 1}]]:</label>
 			</div>
 			<div class="m-2">
 				<img th:id="'extraThumbnail' + ${numberOfExistingExtraImages}"
