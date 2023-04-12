@@ -1,0 +1,7 @@
+com/myshop/common/entity/ProductImage.class
+com/myshop/common/entity/Category.class
+com/myshop/common/entity/ProductDetail.class
+com/myshop/common/entity/Brand.class
+com/myshop/common/entity/Product.class
+com/myshop/common/entity/Role.class
+com/myshop/common/entity/User.class

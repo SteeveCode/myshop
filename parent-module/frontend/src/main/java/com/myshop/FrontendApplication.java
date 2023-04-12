@@ -1,4 +1,4 @@
-package com.myshop.frontend;
+package com.myshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

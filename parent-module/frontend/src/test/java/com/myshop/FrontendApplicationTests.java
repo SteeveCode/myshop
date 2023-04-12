@@ -1,4 +1,4 @@
-package com.myshop.frontend;
+package com.myshop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
