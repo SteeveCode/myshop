@@ -1,12 +1,7 @@
 package com.myshop.backend.admin.product;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.myshop.backend.admin.FileUploadUtil;
 import com.myshop.backend.admin.brand.BrandService;
@@ -14,16 +9,13 @@ import com.myshop.backend.admin.category.CategoryService;
 import com.myshop.backend.admin.security.MyshopUserDetails;
 import com.myshop.common.entity.Brand;
 import com.myshop.common.entity.Category;
-import com.myshop.common.entity.ProductImage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.myshop.common.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.myshop.common.entity.Product;

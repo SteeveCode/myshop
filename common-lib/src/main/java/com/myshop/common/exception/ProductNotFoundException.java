@@ -1,4 +1,4 @@
-package com.myshop.backend.admin.product;
+package com.myshop.common.exception;
 
 public class ProductNotFoundException extends Exception {
 

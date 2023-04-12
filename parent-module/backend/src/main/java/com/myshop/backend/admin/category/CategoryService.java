@@ -1,6 +1,7 @@
 package com.myshop.backend.admin.category;
 
 import com.myshop.common.entity.Category;
+import com.myshop.common.exception.CategoryNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

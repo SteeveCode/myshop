@@ -3,7 +3,6 @@ package com.myshop.common.entity;
 import jakarta.persistence.*;
 
 import java.util.*;
-
 @Entity
 @Table(name = "products")
 public class Product {

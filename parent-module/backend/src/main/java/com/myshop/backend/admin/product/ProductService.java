@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import com.myshop.common.exception.ProductNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

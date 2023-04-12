@@ -2,6 +2,7 @@ package com.myshop.backend.admin.category;
 
 import com.myshop.backend.admin.FileUploadUtil;
 import com.myshop.common.entity.Category;
+import com.myshop.common.exception.CategoryNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
