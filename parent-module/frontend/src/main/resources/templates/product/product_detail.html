@@ -4,7 +4,7 @@
 <body>
 <div class="container-fluid">
 	<div th:replace="navigation :: header_menu"></div>
-
+	<div th:replace="navigation :: search_nav"></div>
 	<div th:replace="breadcrumb :: content"></div>
 
 	<div class="row">
@@ -16,7 +16,7 @@
 				<div class="m-2 border border-secondary p-1">
 					<img class="image-thumbnail" th:src="@{${product.mainImagePath}}" height="50" index="0" />
 				</div>
-				<th:block th:each="extraImage,status : ${product.images}">
+				<th:block th:each="extraImage, status : ${product.images}">
 					<div class="m-2 border border-secondary p-1">
 						<img class="image-thumbnail" th:src="@{${extraImage.imagePath}}" height="50"
 							 th:index="${status.count}" />
