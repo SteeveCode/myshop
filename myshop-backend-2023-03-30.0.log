@@ -1,8 +1,8 @@
 2023-05-17T14:34:16.916+01:00  INFO 11864 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-05-17T14:34:16.921+01:00  INFO 11864 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2023-05-17T14:34:16.933+01:00  INFO 11864 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-05-17T14:34:21.296+01:00  INFO 13371 --- [restartedMain] com.myshop.backend.BackendApplication    : Starting BackendApplication using Java 18.0.2.1 with PID 13371 (/home/stevecode/Documents/web projects/learn/ecommerce-project/parent-module/backend/target/classes started by stevecode in /home/stevecode/Documents/web projects/learn/ecommerce-project)
-2023-05-17T14:34:21.299+01:00  INFO 13371 --- [restartedMain] com.myshop.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-05-17T14:34:21.296+01:00  INFO 13371 --- [restartedMain] com.myshop.admin.BackendApplication    : Starting BackendApplication using Java 18.0.2.1 with PID 13371 (/home/stevecode/Documents/web projects/learn/ecommerce-project/parent-module/backend/target/classes started by stevecode in /home/stevecode/Documents/web projects/learn/ecommerce-project)
+2023-05-17T14:34:21.299+01:00  INFO 13371 --- [restartedMain] com.myshop.admin.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
 2023-05-17T14:34:21.359+01:00  INFO 13371 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
 2023-05-17T14:34:21.360+01:00  INFO 13371 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
 2023-05-17T14:34:22.059+01:00  INFO 13371 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
@@ -31,12 +31,12 @@
 2023-05-17T14:34:25.441+01:00  INFO 13371 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/webjars/**']
 2023-05-17T14:34:25.666+01:00  INFO 13371 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2023-05-17T14:34:25.729+01:00  INFO 13371 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/myshopadmin'
-2023-05-17T14:34:25.741+01:00  INFO 13371 --- [restartedMain] com.myshop.backend.BackendApplication    : Started BackendApplication in 5.029 seconds (process running for 6.081)
+2023-05-17T14:34:25.741+01:00  INFO 13371 --- [restartedMain] com.myshop.admin.BackendApplication    : Started BackendApplication in 5.029 seconds (process running for 6.081)
 2023-03-30T14:34:22.212+01:00  INFO 13371 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-03-30T14:34:22.216+01:00  INFO 13371 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2023-03-30T14:34:22.223+01:00  INFO 13371 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
-2023-03-30T14:34:26.439+01:00  INFO 13829 --- [restartedMain] com.myshop.backend.BackendApplication    : Starting BackendApplication using Java 18.0.2.1 with PID 13829 (/home/stevecode/Documents/web projects/learn/ecommerce-project/parent-module/backend/target/classes started by stevecode in /home/stevecode/Documents/web projects/learn/ecommerce-project)
-2023-03-30T14:34:26.442+01:00  INFO 13829 --- [restartedMain] com.myshop.backend.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
+2023-03-30T14:34:26.439+01:00  INFO 13829 --- [restartedMain] com.myshop.admin.BackendApplication    : Starting BackendApplication using Java 18.0.2.1 with PID 13829 (/home/stevecode/Documents/web projects/learn/ecommerce-project/parent-module/backend/target/classes started by stevecode in /home/stevecode/Documents/web projects/learn/ecommerce-project)
+2023-03-30T14:34:26.442+01:00  INFO 13829 --- [restartedMain] com.myshop.admin.BackendApplication    : No active profile set, falling back to 1 default profile: "default"
 2023-03-30T14:34:26.525+01:00  INFO 13829 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
 2023-03-30T14:34:26.525+01:00  INFO 13829 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
 2023-03-30T14:34:27.478+01:00  INFO 13829 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
@@ -65,7 +65,7 @@
 2023-03-30T14:34:31.681+01:00  INFO 13829 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Mvc [pattern='/webjars/**']
 2023-03-30T14:34:31.890+01:00  INFO 13829 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2023-03-30T14:34:31.960+01:00  INFO 13829 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path '/myshopadmin'
-2023-03-30T14:34:31.974+01:00  INFO 13829 --- [restartedMain] com.myshop.backend.BackendApplication    : Started BackendApplication in 6.155 seconds (process running for 7.024)
+2023-03-30T14:34:31.974+01:00  INFO 13829 --- [restartedMain] com.myshop.admin.BackendApplication    : Started BackendApplication in 6.155 seconds (process running for 7.024)
 2023-03-30T14:47:59.166+01:00  INFO 13829 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[localhost].[/myshopadmin]   : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2023-03-30T14:47:59.167+01:00  INFO 13829 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2023-03-30T14:47:59.168+01:00  INFO 13829 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
@@ -111,7 +111,7 @@ org.springframework.data.mapping.PropertyReferenceException: No property 'emasil
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.6.jar:6.0.6]
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218) ~[spring-aop-6.0.6.jar:6.0.6]
 	at jdk.proxy4/jdk.proxy4.$Proxy120.findAll(Unknown Source) ~[na:na]
-	at com.myshop.backend.admin.user.UserService.listByPage(UserService.java:48) ~[classes/:na]
+	at user.com.myshop.adminasa.UserService.listByPage(UserService.java:48) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:343) ~[spring-aop-6.0.6.jar:6.0.6]
@@ -124,8 +124,8 @@ org.springframework.data.mapping.PropertyReferenceException: No property 'emasil
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.6.jar:6.0.6]
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:750) ~[spring-aop-6.0.6.jar:6.0.6]
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:702) ~[spring-aop-6.0.6.jar:6.0.6]
-	at com.myshop.backend.admin.user.UserService$$SpringCGLIB$$0.listByPage(<generated>) ~[classes/:na]
-	at com.myshop.backend.admin.user.controller.UserController.listByPage(UserController.java:55) ~[classes/:na]
+	at user.com.myshop.adminasa.UserService$$SpringCGLIB$$0.listByPage(<generated>) ~[classes/:na]
+	at controller.user.com.myshop.adminasa.UserController.listByPage(UserController.java:55) ~[classes/:na]
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577) ~[na:na]
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:207) ~[spring-web-6.0.6.jar:6.0.6]
