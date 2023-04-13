@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 
-import com.myshop.admin.security.CurrencyRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -46,4 +45,13 @@ public class CurrencyRepositoryTests {
 
 		assertThat(iterable).size().isEqualTo(12);
 	}
+	@Test
+	public void testListAllOrderByNameAsc() {
+		List<Currency> currencies = repo.findAllByOrderByNameAsc();
+
+		currencies.forEach(System.out::println);
+
+		assertThat(currencies.size()).isGreaterThan(0);
+	}
 }
+
