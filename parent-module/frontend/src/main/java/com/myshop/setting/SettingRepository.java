@@ -2,13 +2,13 @@ package com.myshop.setting;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
 import com.myshop.common.entity.Setting;
 import com.myshop.common.entity.SettingCategory;
 
-public interface SettingRepository extends JpaRepository<Setting, String> {
+public interface SettingRepository extends CrudRepository<Setting, String> {
 	public List<Setting> findByCategory(SettingCategory category);
 	
 	@Query("SELECT s FROM Setting s WHERE s.category = ?1 OR s.category = ?2")

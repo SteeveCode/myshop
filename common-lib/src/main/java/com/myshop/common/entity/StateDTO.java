@@ -1,4 +1,4 @@
-package com.myshop.admin.setting.state;
+package com.myshop.common.entity;
 
 public class StateDTO {
 	private Integer id;
