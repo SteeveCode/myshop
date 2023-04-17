@@ -24,26 +24,26 @@ import com.myshop.common.entity.Setting;
 public class SettingController {
 
 	@Autowired private SettingService service;
-	
+
 	@Autowired private CurrencyRepository currencyRepo;
-	
+
 	@GetMapping("/settings")
 	public String listAll(Model model) {
 		List<Setting> listSettings = service.listAllSettings();
 		List<Currency> listCurrencies = currencyRepo.findAllByOrderByNameAsc();
-		
+
 		model.addAttribute("listCurrencies", listCurrencies);
-		
+
 		for (Setting setting : listSettings) {
 			model.addAttribute(setting.getKey(), setting.getValue());
 		}
-		
+
 		return "settings/settings";
 	}
-	
+
 	@PostMapping("/settings/save_general")
 	public String saveGeneralSettings(@RequestParam("fileImage") MultipartFile multipartFile,
-			HttpServletRequest request, RedirectAttributes ra) throws IOException {
+									  HttpServletRequest request, RedirectAttributes ra) throws IOException {
 		GeneralSettingBag settingBag = service.getGeneralSettings();
 
 		saveSiteLogo(multipartFile, settingBag);
@@ -87,5 +87,25 @@ public class SettingController {
 		}
 
 		service.saveAll(listSettings);
+	}
+
+	@PostMapping("/settings/save_mail_server")
+	public String saveMailServerSetttings(HttpServletRequest request, RedirectAttributes ra) {
+		List<Setting> mailServerSettings = service.getMailServerSettings();
+		updateSettingValuesFromForm(request, mailServerSettings);
+
+		ra.addFlashAttribute("message", "Mail server settings have been saved");
+
+		return "redirect:/settings#mailServer";
+	}
+
+	@PostMapping("/settings/save_mail_templates")
+	public String saveMailTemplateSetttings(HttpServletRequest request, RedirectAttributes ra) {
+		List<Setting> mailTemplateSettings = service.getMailTemplateSettings();
+		updateSettingValuesFromForm(request, mailTemplateSettings);
+
+		ra.addFlashAttribute("message", "Mail template settings have been saved");
+
+		return "redirect:/settings#mailTemplates";
 	}
 }
