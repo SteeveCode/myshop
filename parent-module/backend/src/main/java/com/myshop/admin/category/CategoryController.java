@@ -60,6 +60,7 @@ public class CategoryController {
 
         model.addAttribute("listCategories", listCategories);
         model.addAttribute("reverseSortDir", reverseSortDir);
+        model.addAttribute("moduleURL", "/categories");
 
         return "categories/categories";
     }
@@ -142,6 +143,7 @@ public class CategoryController {
 
         return "redirect:/categories";
     }
+
     @GetMapping("/categories/export/csv")
     public void exportToCSV(HttpServletResponse response) throws IOException {
         List<Category> listCategories = service.listCategoriesUsedInForm();

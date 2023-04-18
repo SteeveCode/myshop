@@ -1,10 +1,13 @@
 package com.myshop.admin;
 
+import com.myshop.admin.paging.PagingAndSortingArgumentResolver;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.context.annotation.Configuration;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
@@ -28,6 +31,13 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler(logicalPath)
                 .addResourceLocations("file:" + absolutePath + "/");
     }
+
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+        resolvers.add(new PagingAndSortingArgumentResolver());
+    }
+
+
     /* A file URI takes the form of "file:" + userPhotosPath + "/ or file://host/path (note "file://" not "file:/" )
 where host is the fully qualified domain name of the system on which the path is accessible, and path is a hierarchical
  directory path of the form directory/directory/.../name. If host is omitted, it is taken to be "localhost", the
