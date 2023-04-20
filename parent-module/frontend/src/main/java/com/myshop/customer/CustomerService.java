@@ -3,6 +3,7 @@ package com.myshop.customer;
 import java.util.Date;
 import java.util.List;
 
+import com.myshop.common.entity.AuthenticationType;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -57,5 +58,12 @@ public class CustomerService {
 			customerRepo.enable(customer.getId());
 			return true;
 		}
+	}
+	public void updateAuthentication(Customer customer, AuthenticationType type){
+		if(!customer.getAuthenticationType().equals(type)){
+			customerRepo.updateAuthenticationType(customer.getId(), type);
+
+		}
+
 	}
 }
