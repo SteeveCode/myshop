@@ -10,11 +10,17 @@
 </head>
 <body>
 <div class="container-fluid text-center">
-
+	<div th:replace="navigation :: header_menu"></div>
 	<div>
-		<img th:src="@{/images/ShopmeAdminBig.png}" class="img-fluid" />
+		<h2>Customer Login</h2>
 	</div>
-	
+
+	<div class="mt-3">
+		<a class="btn btn-lg btn-secondary fab fa-google" th:href="@{/oauth2/authorization/google}">&nbsp;&nbsp;Continue with Google</a>
+	</div>
+
+	<div>&nbsp;</div>
+
 	<form th:action="@{/login}" method="post" style="max-width: 350px; margin: 0 auto">
 		<div th:if="${param.error}">
 			<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
@@ -22,9 +28,8 @@
 		<div th:if="${param.logout}">
 			<p class="text-warning">You have been logged out.</p>
 		</div>
-		
+
 		<div class="border border-secondary rounded p-3">
-			<p>Access to Shopme Control Panel</p>
 			<p>
 				<input type="email" name="email" class="form-control" placeholder="E-mail" required />
 			</p>
@@ -36,14 +41,17 @@
 			</p>
 			<p>
 				<input type="submit" value="Login" class="btn btn-primary" />
-			</p>			
+			</p>
 		</div>
 	</form>
-	
+
+	<div>&nbsp;</div>
 	<div>
-		<p>Shopme Control Panel - Copyright &copy; Shopme</p>
+		Don't have an account? <a th:href="@{/register}"><b>Sign up</b></a>
 	</div>
-	
+	<div>&nbsp;</div>
+
+	<div th:replace="navigation :: footer_menu"></div>
 </div>
 </body>
 </html>

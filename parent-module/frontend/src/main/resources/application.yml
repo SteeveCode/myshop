@@ -1,0 +1,35 @@
+server:
+    port: 8181
+    servlet:
+        context-path: /myshop
+
+spring:
+    datasource:
+        username: sergey
+        password: sergey
+        url: jdbc:mysql://localhost:3306/myshopdb
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    main:
+        allow-circular-references: true
+# NOTE: There was a circular reference error at 167. Code Login with Google. Solved by setting value to true
+# Relying upon circular references is discouraged and they are prohibited by default. Update your application to remove
+# the dependency cycle between beans. As a last resort, it may be possible to break the cycle automatically by setting
+# spring.main.allow-circular-references to true.
+    jpa:
+        hibernate:
+          ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.MySQLDialect
+                format_sql: true
+                show_sql: true
+    security:
+        oauth2:
+            client:
+                registration:
+                  google:
+                      client-id: 847161988571-op0gh0u8plpb6j5na38c0ve4hmgr5gmc.apps.googleusercontent.com
+                      client-secret: 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
+                      scope:
+                        - email
+                        - profile

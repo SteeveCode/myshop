@@ -1,5 +1,9 @@
 package com.myshop.security;
 
+import com.myshop.security.oauth.CustomerOAuth2User;
+import com.myshop.security.oauth.CustomerOAuth2UserService;
+import com.myshop.security.oauth.OAuth2LoginSuccessHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,6 +19,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig  {
+
+	@Autowired
+	private CustomerOAuth2UserService oAuth2UserService;
+	@Autowired
+	private OAuth2LoginSuccessHandler oAuth2LoginHandler;
+	@Autowired DatabaseLoginSuccessHandler databaseLoginHandler;
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new CustomerUserDetailsService();
@@ -43,7 +53,15 @@ public class WebSecurityConfig  {
 			.formLogin()
 				.loginPage("/login")
 				.usernameParameter("email")
+				.successHandler(databaseLoginHandler)
 				.permitAll()
+			.and()
+			.oauth2Login()
+				.loginPage("/login")
+				.userInfoEndpoint()
+				.userService(oAuth2UserService)
+				.and()
+				.successHandler(oAuth2LoginHandler)
 			.and()
 			.logout().permitAll()
 			.and()
