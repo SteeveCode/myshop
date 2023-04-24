@@ -21,8 +21,7 @@ public class CustomerService {
 
 	@Autowired private CountryRepository countryRepo;
 	@Autowired private CustomerRepository customerRepo;
-	@Autowired
-	PasswordEncoder passwordEncoder;
+	@Autowired PasswordEncoder passwordEncoder;
 
 	public List<Country> listAllCountries() {
 		return countryRepo.findAllByOrderByNameAsc();
@@ -45,7 +44,8 @@ public class CustomerService {
 		customerRepo.save(customer);
 
 	}
-	public Customer getCustomerByEmail(String email){
+
+	public Customer getCustomerByEmail(String email) {
 		return customerRepo.findByEmail(email);
 	}
 
@@ -53,6 +53,7 @@ public class CustomerService {
 		String encodedPassword = passwordEncoder.encode(customer.getPassword());
 		customer.setPassword(encodedPassword);
 	}
+
 	public boolean verify(String verificationCode) {
 		Customer customer = customerRepo.findByVerificationCode(verificationCode);
 
@@ -63,23 +64,24 @@ public class CustomerService {
 			return true;
 		}
 	}
-	public void updateAuthenticationType(Customer customer, AuthenticationType type){
-		if(!customer.getAuthenticationType().equals(type)){
-			customerRepo.updateAuthenticationType(customer.getId(), type);
 
+	public void updateAuthenticationType(Customer customer, AuthenticationType type) {
+		if (!customer.getAuthenticationType().equals(type)) {
+			customerRepo.updateAuthenticationType(customer.getId(), type);
 		}
 	}
-	public void addNewCustomerUponOAuthLogin(String name, String email, String countryCode, AuthenticationType
-											 authenticationType){
+
+	public void addNewCustomerUponOAuthLogin(String name, String email, String countryCode,
+											 AuthenticationType authenticationType) {
 		Customer customer = new Customer();
 		customer.setEmail(email);
 		setName(name, customer);
+
 		customer.setEnabled(true);
 		customer.setCreatedTime(new Date());
 		customer.setAuthenticationType(authenticationType);
 		customer.setPassword("");
 		customer.setAddressLine1("");
-
 		customer.setCity("");
 		customer.setState("");
 		customer.setPhoneNumber("");
@@ -87,18 +89,41 @@ public class CustomerService {
 		customer.setCountry(countryRepo.findByCode(countryCode));
 
 		customerRepo.save(customer);
-
 	}
-	private void setName(String name, Customer customer){
+
+	private void setName(String name, Customer customer) {
 		String[] nameArray = name.split(" ");
-		if(nameArray.length < 2){
+		if (nameArray.length < 2) {
 			customer.setFirstName(name);
-		} else{
+			customer.setLastName("");
+		} else {
 			String firstName = nameArray[0];
 			customer.setFirstName(firstName);
 
-			String lastName = name.replaceFirst(firstName + " ","");
+			String lastName = name.replaceFirst(firstName + " ", "");
 			customer.setLastName(lastName);
 		}
+	}
+
+	public void update(Customer customerInForm) {
+		Customer customerInDB = customerRepo.findById(customerInForm.getId()).get();
+
+		if (customerInDB.getAuthenticationType().equals(AuthenticationType.DATABASE)) {
+			if (!customerInForm.getPassword().isEmpty()) {
+				String encodedPassword = passwordEncoder.encode(customerInForm.getPassword());
+				customerInForm.setPassword(encodedPassword);
+			} else {
+				customerInForm.setPassword(customerInDB.getPassword());
+			}
+		} else {
+			customerInForm.setPassword(customerInDB.getPassword());
+		}
+
+		customerInForm.setEnabled(customerInDB.isEnabled());
+		customerInForm.setCreatedTime(customerInDB.getCreatedTime());
+		customerInForm.setVerificationCode(customerInDB.getVerificationCode());
+		customerInForm.setAuthenticationType(customerInDB.getAuthenticationType());
+
+		customerRepo.save(customerInForm);
 	}
 }

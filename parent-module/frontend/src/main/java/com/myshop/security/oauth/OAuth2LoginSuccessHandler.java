@@ -16,37 +16,39 @@ import java.io.IOException;
 @Component
 public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-    @Autowired
-    private CustomerService customerService;
+    @Autowired private CustomerService customerService;
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws ServletException, IOException {
-           CustomerOAuth2User customerOAuth2User = (CustomerOAuth2User) authentication.getPrincipal();
+        CustomerOAuth2User oauth2User = (CustomerOAuth2User) authentication.getPrincipal();
 
-           String name = customerOAuth2User.getName();
-           String email = customerOAuth2User.getEmail();
-           String countryCode = request.getLocale().getCountry();
-           String clientName = customerOAuth2User.getClientName();
+        String name = oauth2User.getName();
+        String email = oauth2User.getEmail();
+        String countryCode = request.getLocale().getCountry();
+        String clientName = oauth2User.getClientName();
 
-        System.out.println("OAuth2LoginSuccessHandler: " + name + " | " + email);
-        System.out.println("Client Name: " + clientName);
-        AuthenticationType authenticationType  = getAuthenticationType(clientName);
+        AuthenticationType authenticationType = getAuthenticationType(clientName);
 
-       Customer customer = customerService.getCustomerByEmail(email);
-       if(customer == null){
-           customerService.addNewCustomerUponOAuthLogin(name, email, countryCode, authenticationType);
+        Customer customer = customerService.getCustomerByEmail(email);
+        if (customer == null) {
+            customerService.addNewCustomerUponOAuthLogin(name, email, countryCode, authenticationType);
+        } else {
+            oauth2User.setFullName(customer.getFullName());
+            customerService.updateAuthenticationType(customer, authenticationType);
+        }
 
-       } else {
-           customerService.updateAuthenticationType(customer, authenticationType);
-       }
-
-            super.onAuthenticationSuccess(request, response, authentication);
+        super.onAuthenticationSuccess(request, response, authentication);
     }
-    private AuthenticationType getAuthenticationType(String clientName){
-        if(clientName.equals("GOOGLE")){
+
+    private AuthenticationType getAuthenticationType(String clientName) {
+        if (clientName.equals("Google")) {
             return AuthenticationType.GOOGLE;
-        } else if(clientName.equals("FACEBOOK")){
+        } else if (clientName.equals("Facebook")) {
             return AuthenticationType.FACEBOOK;
-        }else return AuthenticationType.DATABASE;
+        } else {
+            return AuthenticationType.DATABASE;
+        }
     }
+
 }
