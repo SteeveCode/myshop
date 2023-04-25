@@ -188,6 +188,9 @@ public class Customer {
 	public void setAuthenticationType(AuthenticationType authenticationType) {
 		this.authenticationType = authenticationType;
 	}
+	@Column(name = "reset_password_token", length = 30)
+	private String resetPasswordToken;
+
 
 	@Override
 	public String toString() {
@@ -197,4 +200,11 @@ public class Customer {
 		return firstName + " " + lastName;
 	}
 
+	public String getResetPasswordToken() {
+		return resetPasswordToken;
+	}
+
+	public void setResetPasswordToken(String resetPasswordToken) {
+		this.resetPasswordToken = resetPasswordToken;
+	}
 }
