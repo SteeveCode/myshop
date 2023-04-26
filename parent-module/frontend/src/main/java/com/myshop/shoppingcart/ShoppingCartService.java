@@ -7,6 +7,8 @@ import com.myshop.common.entity.CartItem;
 import com.myshop.common.entity.Customer;
 import com.myshop.common.entity.Product;
 
+import java.util.List;
+
 @Service
 public class ShoppingCartService {
 
@@ -38,5 +40,8 @@ public class ShoppingCartService {
 		cartRepo.save(cartItem);
 		
 		return updatedQuantity;
+	}
+	public List<CartItem> listCartItems(Customer customer) {
+		return cartRepo.findByCustomer(customer);
 	}
 }
