@@ -16,7 +16,7 @@ $(document).ready(function() {
 function loadStatesForCountry() {
 	selectedCountry = $("#country option:selected");
 	countryId = selectedCountry.val();
-	 let url = contextPath + "settings/list_states_by_country/" + countryId;
+	url = contextPath + "settings/list_states_by_country/" + countryId;
 	
 	$.get(url, function(responseJSON) {
 		dataListState.empty();
@@ -37,17 +37,3 @@ function checkPasswordMatch(confirmPassword) {
 		confirmPassword.setCustomValidity("");
 	}
 }
-
-function showModalDialog(title, message) {
-	$("#modalTitle").text(title);
-	$("#modalBody").text(message);
-	$("#modalDialog").modal();
-}
-
-function showErrorModal(message) {
-	showModalDialog("Error", message);
-}
-
-function showWarningModal(message) {
-	showModalDialog("Warning", message);
-}	
