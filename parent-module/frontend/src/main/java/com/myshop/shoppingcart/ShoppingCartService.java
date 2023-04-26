@@ -1,5 +1,7 @@
 package com.myshop.shoppingcart;
 
+import com.myshop.product.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +12,11 @@ import com.myshop.common.entity.Product;
 import java.util.List;
 
 @Service
+@Transactional
 public class ShoppingCartService {
 
 	@Autowired private CartItemRepository cartRepo;
+	@Autowired private ProductRepository productRepo;
 	
 	public Integer addProduct(Integer productId, Integer quantity, Customer customer) 
 			throws ShoppingCartException {
@@ -43,5 +47,11 @@ public class ShoppingCartService {
 	}
 	public List<CartItem> listCartItems(Customer customer) {
 		return cartRepo.findByCustomer(customer);
+	}
+	public float updateQuantity(Integer productId, Integer quantity, Customer customer) {
+		cartRepo.updateQuantity(quantity, customer.getId(), productId);
+		Product product = productRepo.findById(productId).get();
+		float subtotal = product.getDiscountPrice() * quantity;
+		return subtotal;
 	}
 }
