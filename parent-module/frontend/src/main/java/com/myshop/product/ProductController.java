@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.myshop.category.CategoryService;
 import com.myshop.common.entity.Category;
 import com.myshop.common.entity.Product;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProductController {
@@ -79,12 +80,12 @@ public class ProductController {
 	}
 
 	@GetMapping("/search")
-	public String searchFirstPage(@Param("keyword") String keyword, Model model) {
+	public String searchFirstPage(@RequestParam("keyword") String keyword, Model model) {
 		return searchByPage(keyword, 1, model);
 	}
 
 	@GetMapping("/search/page/{pageNum}")
-	public String searchByPage(@Param("keyword") String keyword,
+	public String searchByPage(@RequestParam("keyword") String keyword,
 							   @PathVariable("pageNum") int pageNum,
 							   Model model) {
 		Page<Product> pageProducts = productService.search(keyword, pageNum);
