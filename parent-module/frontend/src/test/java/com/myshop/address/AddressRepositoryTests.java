@@ -3,6 +3,7 @@ package com.myshop.address;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,49 +22,49 @@ import com.myshop.common.entity.Customer;
 public class AddressRepositoryTests {
 
 	@Autowired private AddressRepository repo;
-	
+
 	@Test
 	public void testAddNew() {
 		Integer customerId = 41;
 		Integer countryId = 234; // USA
-		
+
 		Address newAddress = new Address();
 		newAddress.setCustomer(new Customer(customerId));
 		newAddress.setCountry(new Country(countryId));
-		newAddress.setFirstName("Tobie");
+		newAddress.setFirstName("John");
 		newAddress.setLastName("Abel");
 		newAddress.setPhoneNumber("646-232-3901");
 		newAddress.setAddressLine1("203 Brown Road");
 		newAddress.setCity("Ohio");
 		newAddress.setState("New York");
 		newAddress.setPostalCode("10013");
-		
+
 		Address savedAddress = repo.save(newAddress);
-		
+
 		assertThat(savedAddress).isNotNull();
 		assertThat(savedAddress.getId()).isGreaterThan(0);
 	}
-	
+
 	@Test
 	public void testFindByCustomer() {
 		Integer customerId = 5;
 		List<Address> listAddresses = repo.findByCustomer(new Customer(customerId));
 		assertThat(listAddresses.size()).isGreaterThan(0);
-		
+
 		listAddresses.forEach(System.out::println);
 	}
-	
+
 	@Test
 	public void testFindByIdAndCustomer() {
 		Integer addressId = 1;
 		Integer customerId = 5;
-		
+
 		Address address = repo.findByIdAndCustomer(addressId, customerId);
-		
+
 		assertThat(address).isNotNull();
 		System.out.println(address);
 	}
-	
+
 	@Test
 	public void testUpdate() {
 		Integer addressId = 3;
@@ -76,15 +77,31 @@ public class AddressRepositoryTests {
 		Address updatedAddress = repo.save(address);
 //		assertThat(updatedAddress.getPhoneNumber()).isEqualTo(phoneNumber);
 	}
-	
+
 	@Test
 	public void testDeleteByIdAndCustomer() {
 		Integer addressId = 1;
 		Integer customerId = 5;
-		
+
 		repo.deleteByIdAndCustomer(addressId, customerId);
-		
+
 		Address address = repo.findByIdAndCustomer(addressId, customerId);
 		assertThat(address).isNull();
-	}	
+	}
+
+	@Test
+	public void testSetDefaultAddress(){
+		Integer AddressId = 13;
+		repo.setDefaultAddress(AddressId);
+
+		Address address = repo.findById(AddressId).get();
+		assertThat(address.isDefaultForShipping()).isTrue();
+
+	}
+	@Test
+	public void testSetNonDefaultAddresses(){
+		Integer AddressId = 3;
+		Integer customerId = 41;
+		repo.setNonDefaultForOthers(AddressId, customerId);
+	}
 }
