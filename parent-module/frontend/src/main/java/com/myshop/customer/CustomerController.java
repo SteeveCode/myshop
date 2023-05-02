@@ -27,7 +27,6 @@ import com.myshop.common.entity.Customer;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 @Controller
 public class CustomerController {
 	@Autowired private CustomerService customerService;
@@ -117,6 +116,8 @@ public class CustomerController {
 
 		if ("address_book".equals(redirectOption)) {
 			redirectURL = "redirect:/address_book";
+		} else if ("cart".equals(redirectOption)) {
+			redirectURL = "redirect:/cart";
 		}
 
 		return redirectURL;

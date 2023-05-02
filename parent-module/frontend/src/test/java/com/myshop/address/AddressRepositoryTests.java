@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
@@ -103,5 +104,12 @@ public class AddressRepositoryTests {
 		Integer AddressId = 3;
 		Integer customerId = 41;
 		repo.setNonDefaultForOthers(AddressId, customerId);
+	}
+	@Test
+	public void testGetDefaultShippingAddress(){
+		Integer customerId = 5;
+		Address address = repo.findDefaultByCustomer(customerId);
+		assertThat(address).isNotNull();
+		System.out.println(address);
 	}
 }
