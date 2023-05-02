@@ -11,30 +11,20 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "shipping_rates")
-public class ShippingRate {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class ShippingRate extends IdBasedEntity {
+
 	private float rate;
 	private int days;
-	
+
 	@Column(name = "cod_supported")
 	private boolean codSupported;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private Country country;
-	
+
 	@Column(nullable = false, length = 45)
 	private String state;
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public float getRate() {
 		return rate;
@@ -105,7 +95,7 @@ public class ShippingRate {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
+	}
 
-	
+
 }

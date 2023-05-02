@@ -1,4 +1,4 @@
-package com.myshop.common.entity;
+package com.myshop.common.entity.order;
 
 public enum OrderStatus {
 	NEW, CANCELLED, PROCESSING, PACKAGED, PICKED, SHIPPING,

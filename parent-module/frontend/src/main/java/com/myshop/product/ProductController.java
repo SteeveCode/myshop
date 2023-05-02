@@ -6,7 +6,6 @@ import com.myshop.common.exception.CategoryNotFoundException;
 import com.myshop.common.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.myshop.category.CategoryService;
 import com.myshop.common.entity.Category;
-import com.myshop.common.entity.Product;
+import com.myshop.common.entity.product.Product;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller

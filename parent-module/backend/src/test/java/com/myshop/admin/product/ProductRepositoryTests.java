@@ -15,7 +15,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.myshop.common.entity.Brand;
 import com.myshop.common.entity.Category;
-import com.myshop.common.entity.Product;
+import com.myshop.common.entity.product.Product;
 
 
 @DataJpaTest

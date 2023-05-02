@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.myshop.common.entity.Setting;
+import com.myshop.common.entity.setting.Setting;
 
 @Component
 public class SettingFilter implements Filter {

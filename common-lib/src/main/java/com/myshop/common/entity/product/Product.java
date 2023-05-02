@@ -1,5 +1,7 @@
-package com.myshop.common.entity;
+package com.myshop.common.entity.product;
 
+import com.myshop.common.entity.Brand;
+import com.myshop.common.entity.Category;
 import jakarta.persistence.*;
 
 import java.util.*;

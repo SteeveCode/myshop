@@ -2,7 +2,7 @@ package com.myshop.admin.order;
 
 import java.util.List;
 
-import com.myshop.common.entity.Order;
+import com.myshop.common.entity.order.Order;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.myshop.admin.paging.PagingAndSortingHelper;
 import com.myshop.admin.paging.PagingAndSortingParam;
 import com.myshop.admin.setting.SettingService;
-import com.myshop.common.entity.Setting;
+import com.myshop.common.entity.setting.Setting;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller

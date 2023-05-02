@@ -2,8 +2,8 @@ package com.myshop.admin.setting;
 
 import java.util.List;
 
-import com.myshop.common.entity.Setting;
-import com.myshop.common.entity.SettingBag;
+import com.myshop.common.entity.setting.Setting;
+import com.myshop.common.entity.setting.SettingBag;
 
 public class GeneralSettingBag extends SettingBag {
 

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myshop.admin.FileUploadUtil;
 import com.myshop.common.entity.Currency;
-import com.myshop.common.entity.Setting;
+import com.myshop.common.entity.setting.Setting;
 
 @Controller
 public class SettingController {

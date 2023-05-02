@@ -8,7 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.myshop.admin.paging.PagingAndSortingHelper;
-import com.myshop.common.entity.Order;
+import com.myshop.common.entity.order.Order;
 
 import java.util.NoSuchElementException;
 

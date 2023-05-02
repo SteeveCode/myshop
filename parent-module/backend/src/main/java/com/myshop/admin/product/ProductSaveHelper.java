@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.myshop.common.entity.Product;
-import com.myshop.common.entity.ProductImage;
+import com.myshop.common.entity.product.Product;
+import com.myshop.common.entity.product.ProductImage;
 
 public class ProductSaveHelper {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProductSaveHelper.class);

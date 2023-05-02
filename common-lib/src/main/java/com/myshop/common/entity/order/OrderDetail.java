@@ -1,5 +1,6 @@
-package com.myshop.common.entity;
+package com.myshop.common.entity.order;
 
+import com.myshop.common.entity.product.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

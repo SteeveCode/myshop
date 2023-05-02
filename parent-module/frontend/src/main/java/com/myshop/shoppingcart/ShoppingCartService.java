@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.myshop.common.entity.CartItem;
 import com.myshop.common.entity.Customer;
-import com.myshop.common.entity.Product;
+import com.myshop.common.entity.product.Product;
 
 import java.util.List;
 

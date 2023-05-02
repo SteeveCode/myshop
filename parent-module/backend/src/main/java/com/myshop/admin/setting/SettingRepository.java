@@ -1,9 +1,9 @@
 package com.myshop.admin.setting;
 
-import com.myshop.common.entity.SettingCategory;
+import com.myshop.common.entity.setting.SettingCategory;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.myshop.common.entity.Setting;
+import com.myshop.common.entity.setting.Setting;
 
 import java.util.List;
 

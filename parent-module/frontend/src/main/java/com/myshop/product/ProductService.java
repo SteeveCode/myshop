@@ -7,7 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.myshop.common.entity.Product;
+import com.myshop.common.entity.product.Product;
 
 @Service
 public class ProductService {

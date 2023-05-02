@@ -4,9 +4,7 @@ import com.myshop.admin.paging.SearchRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.Query;
 
-import com.myshop.common.entity.Order;
-
-import java.awt.print.Pageable;
+import com.myshop.common.entity.order.Order;
 
 public interface OrderRepository extends SearchRepository<Order, Integer> {
 

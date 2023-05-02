@@ -2,8 +2,8 @@ package com.myshop.admin.setting;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.myshop.common.entity.Setting;
-import com.myshop.common.entity.SettingCategory;
+import com.myshop.common.entity.setting.Setting;
+import com.myshop.common.entity.setting.SettingCategory;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
