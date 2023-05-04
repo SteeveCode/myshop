@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.myshop.common.entity.AbstractAddress;
+import com.myshop.common.entity.Address;
 import com.myshop.common.entity.Customer;
 import jakarta.persistence.*;
 
@@ -168,5 +169,17 @@ public class Order extends AbstractAddress {
 		destination += country;
 
 		return destination;
+	}
+
+	public void copyShippingAddress(Address address) {
+		setFirstName(address.getFirstName());
+		setLastName(address.getLastName());
+		setPhoneNumber(address.getPhoneNumber());
+		setAddressLine1(address.getAddressLine1());
+		setAddressLine2(address.getAddressLine2());
+		setCity(address.getCity());
+		setCountry(address.getCountry().getName());
+		setPostalCode(address.getPostalCode());
+		setState(address.getState());
 	}
 }
