@@ -1,0 +1,50 @@
+## CIrcular Reference ##
+
+### Problem ###
+circular reference error at 167. Code Login with Google.
+
+### Solution ###
+#  There was a circular reference error at 167. Code Login with Google. Solved by setting the 
+# "main: allow-circular-references:" property value to true in the application.yml file.
+# Relying upon circular references is discouraged and they are prohibited by default. Update your application to remove
+# the dependency cycle between beans. As a last resort, it may be possible to break the cycle automatically by setting
+# spring.main.allow-circular-references to true.
+
+
+## SMTP/Email Settings ##
+### Problem
+I kept getting smtp errors sending verification emails
+
+### Solution
+The author did not set a particular mailProperties in the Utility class. See the solution given by a student in the comment section below:
+
+public class Utility {
+	public static String getSiteURL(HttpServletRequest request) {
+		String siteURL = request.getRequestURL().toString();
+		
+		return siteURL.replace(request.getServletPath(), "");
+	}
+	
+	public static JavaMailSenderImpl prepareMailSender(EmailSettingBag settings) {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		
+		mailSender.setHost(settings.getHost());
+		mailSender.setPort(settings.getPort());
+		mailSender.setUsername(settings.getUsername());
+		mailSender.setPassword(settings.getPassword());
+		
+		Properties mailProperties = new Properties();
+		mailProperties.setProperty("mail.smtp.auth", settings.getSmtpAuth());
+		mailProperties.setProperty("mail.smtp.starttls.enable", settings.getSmtpSecured());
+		
+		// the line of code below (line 43)was not in the course. It was a solution to email error suggested by a student
+		// MAIL_PORT was also changed from 587 in the course to 465 suggested by student
+		
+		mailProperties.setProperty("mail.smtp.ssl.enable", "true"); // added by student
+		
+		mailSender.setJavaMailProperties(mailProperties);
+		
+		return mailSender;
+	}
+}
+

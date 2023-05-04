@@ -4,6 +4,9 @@ server:
         context-path: /myshop
 
 spring:
+    thymeleaf:
+      cache:
+        false
     datasource:
         username: sergey
         password: sergey
@@ -11,7 +14,8 @@ spring:
         driver-class-name: com.mysql.cj.jdbc.Driver
     main:
         allow-circular-references: true
-# NOTE: There was a circular reference error at 167. Code Login with Google. Solved by setting value to true
+# NOTE: There was a circular reference error at 167. Code Login with Google. Solved by setting the
+# "main: allow-circular-references:" property value to true in the application.yml file.
 # Relying upon circular references is discouraged and they are prohibited by default. Update your application to remove
 # the dependency cycle between beans. As a last resort, it may be possible to break the cycle automatically by setting
 # spring.main.allow-circular-references to true.
