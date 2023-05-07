@@ -1,8 +1,6 @@
 package com.myshop.common.entity.order;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import com.myshop.common.entity.AbstractAddress;
 import com.myshop.common.entity.Address;
@@ -39,6 +37,9 @@ public class Order extends AbstractAddress {
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 	private Set<OrderDetail> orderDetails = new HashSet<>();
+
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	private List<OrderTrack> orderTracks = new ArrayList<>();
 
 	public String getCountry() {
 		return country;
@@ -204,4 +205,14 @@ public class Order extends AbstractAddress {
 
 		return address;
 	}
+
+	public List<OrderTrack> getOrderTracks() {
+		return orderTracks;
+	}
+
+	public void setOrderTracks(List<OrderTrack> orderTracks) {
+		this.orderTracks = orderTracks;
+	}
+
+
 }
