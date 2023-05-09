@@ -1,5 +1,7 @@
 package com.myshop.common.entity.order;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.myshop.common.entity.AbstractAddress;
@@ -39,7 +41,7 @@ public class Order extends AbstractAddress {
 	private Set<OrderDetail> orderDetails = new HashSet<>();
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	@OrderBy("updatedTime ASC ")
+	@OrderBy("updatedTime ASC")
 	private List<OrderTrack> orderTracks = new ArrayList<>();
 
 	public String getCountry() {
@@ -215,5 +217,9 @@ public class Order extends AbstractAddress {
 		this.orderTracks = orderTracks;
 	}
 
-
+	@Transient
+	public String getDeliverDateOnForm() {
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+		return dateFormatter.format(this.deliverDate);
+	}
 }
