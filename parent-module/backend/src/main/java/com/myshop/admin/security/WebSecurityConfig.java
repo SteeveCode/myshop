@@ -57,7 +57,9 @@ public class WebSecurityConfig {
         //restarting the server will not require login again because a new remember-me key is not created because
         // we used the key() method and specified a key in addition to the rememberMe() method
                 .tokenValiditySeconds(3*24*60*60);
-               return http.build();
+        http.headers().frameOptions().sameOrigin(); // permits content of iframe modal dialog to be displayed
+
+        return http.build();
     }
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
