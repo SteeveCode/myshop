@@ -16,8 +16,7 @@ import java.util.List;
 
 @Controller
 public class OrderController {
-    @Autowired
-    private OrderService orderService;
+    @Autowired private OrderService orderService;
     @Autowired private CustomerService customerService;
 
     @GetMapping("/orders")
@@ -56,6 +55,17 @@ public class OrderController {
         model.addAttribute("endCount", endCount);
 
         return "orders/orders_customer";
+    }
+
+    @GetMapping("/orders/detail/{id}")
+    public String viewOrderDetails(Model model,
+                                   @PathVariable(name = "id") Integer id, HttpServletRequest request) {
+        Customer customer = getAuthenticatedCustomer(request);
+
+        Order order = orderService.getOrder(id, customer);
+        model.addAttribute("order", order);
+
+        return "orders/order_details_modal";
     }
 
     private Customer getAuthenticatedCustomer(HttpServletRequest request) {
