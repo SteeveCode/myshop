@@ -1,4 +1,4 @@
-package com.myshop.admin.order;
+package com.myshop.common.exception;
 
 public class OrderNotFoundException extends Exception {
 
