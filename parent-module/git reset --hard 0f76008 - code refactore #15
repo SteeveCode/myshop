@@ -1,0 +1,2 @@
+Roll back to section 25 - code refactor #15, due to AWS S3 & Heroku billing issues
+Code will be completed without using both aws s3 bucket and heroku cloud
