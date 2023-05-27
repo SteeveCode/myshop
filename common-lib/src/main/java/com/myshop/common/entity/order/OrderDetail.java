@@ -1,5 +1,6 @@
 package com.myshop.common.entity.order;
 
+import com.myshop.common.entity.Category;
 import com.myshop.common.entity.IdBasedEntity;
 import com.myshop.common.entity.product.Product;
 import jakarta.persistence.Entity;
@@ -26,6 +27,26 @@ public class OrderDetail extends IdBasedEntity {
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
+
+	public OrderDetail() {
+	}
+
+	public OrderDetail(String categoryName, int quantity, float productCost, float shippingCost, float subtotal) {
+		this.product = new Product();
+		this.product.setCategory(new Category(categoryName));
+		this.quantity = quantity;
+		this.productCost = productCost;
+		this.shippingCost = shippingCost;
+		this.subtotal = subtotal;
+	}
+
+	public OrderDetail(int quantity, String productName, float productCost, float shippingCost, float subtotal) {
+		this.product = new Product(productName);
+		this.quantity = quantity;
+		this.productCost = productCost;
+		this.shippingCost = shippingCost;
+		this.subtotal = subtotal;
+	}
 
 	public int getQuantity() {
 		return quantity;

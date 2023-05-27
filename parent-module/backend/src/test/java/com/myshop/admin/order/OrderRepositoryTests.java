@@ -2,6 +2,9 @@ package com.myshop.admin.order;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -65,9 +68,9 @@ public class OrderRepositoryTests {
 
 	@Test
 	public void testCreateNewOrderWithMultipleProducts() {
-		Customer customer = entityManager.find(Customer.class, 13);
-		Product product1 = entityManager.find(Product.class, 23);
-		Product product2 = entityManager.find(Product.class, 25);
+		Customer customer = entityManager.find(Customer.class, 10);
+		Product product1 = entityManager.find(Product.class, 20);
+		Product product2 = entityManager.find(Product.class, 40);
 
 		Order mainOrder = new Order();
 		mainOrder.setOrderTime(new Date());
@@ -102,8 +105,8 @@ public class OrderRepositoryTests {
 		mainOrder.setSubtotal(subtotal);
 		mainOrder.setTotal(subtotal + 30);
 
-		mainOrder.setPaymentMethod(PaymentMethod.COD);
-		mainOrder.setStatus(OrderStatus.SHIPPING);
+		mainOrder.setPaymentMethod(PaymentMethod.CREDIT_CARD);
+		mainOrder.setStatus(OrderStatus.PACKAGED);
 		mainOrder.setDeliverDate(new Date());
 		mainOrder.setDeliverDays(3);
 
@@ -152,22 +155,23 @@ public class OrderRepositoryTests {
 		Optional<Order> result = repo.findById(orderId);
 		assertThat(result).isNotPresent();
 	}
+
 	@Test
 	public void testUpdateOrderTracks() {
-		Integer orderId = 11;
+		Integer orderId = 19;
 		Order order = repo.findById(orderId).get();
 
 		OrderTrack newTrack = new OrderTrack();
 		newTrack.setOrder(order);
 		newTrack.setUpdatedTime(new Date());
-		newTrack.setStatus(OrderStatus.PICKED);
-		newTrack.setNotes(OrderStatus.PICKED.defaultDescription());
+		newTrack.setStatus(OrderStatus.NEW);
+		newTrack.setNotes(OrderStatus.NEW.defaultDescription());
 
 		OrderTrack processingTrack = new OrderTrack();
 		processingTrack.setOrder(order);
 		processingTrack.setUpdatedTime(new Date());
-		processingTrack.setStatus(OrderStatus.PACKAGED);
-		processingTrack.setNotes(OrderStatus.PACKAGED.defaultDescription());
+		processingTrack.setStatus(OrderStatus.PROCESSING);
+		processingTrack.setNotes(OrderStatus.PROCESSING.defaultDescription());
 
 		List<OrderTrack> orderTracks = order.getOrderTracks();
 		orderTracks.add(newTrack);
@@ -176,5 +180,41 @@ public class OrderRepositoryTests {
 		Order updatedOrder = repo.save(order);
 
 		assertThat(updatedOrder.getOrderTracks()).hasSizeGreaterThan(1);
+	}
+
+	@Test
+	public void testAddTrackWithStatusNewToOrder() {
+		Integer orderId = 2;
+		Order order = repo.findById(orderId).get();
+
+		OrderTrack newTrack = new OrderTrack();
+		newTrack.setOrder(order);
+		newTrack.setUpdatedTime(new Date());
+		newTrack.setStatus(OrderStatus.NEW);
+		newTrack.setNotes(OrderStatus.NEW.defaultDescription());
+
+		List<OrderTrack> orderTracks = order.getOrderTracks();
+		orderTracks.add(newTrack);
+
+		Order updatedOrder = repo.save(order);
+
+		assertThat(updatedOrder.getOrderTracks()).hasSizeGreaterThan(1);
+	}
+
+	@Test
+	public void testFindByOrderTimeBetween() throws ParseException {
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date startTime = dateFormatter.parse("2021-08-01");
+		Date endTime = dateFormatter.parse("2021-08-31");
+
+		List<Order> listOrders = repo.findByOrderTimeBetween(startTime, endTime);
+
+		assertThat(listOrders.size()).isGreaterThan(0);
+
+		for (Order order : listOrders) {
+			System.out.printf("%s | %s | %.2f | %.2f | %.2f \n",
+					order.getId(), order.getOrderTime(), order.getProductCost(),
+					order.getSubtotal(), order.getTotal());
+		}
 	}
 }
