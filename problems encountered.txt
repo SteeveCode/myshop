@@ -48,9 +48,7 @@ public class Utility {
 	}
 }
 
-
 ## Search Order CLassCastException ##
-
 ### Problem ###
 ## Code order listing for customer - video 235
 A ClassCastException (cannot convert string to enum) kept occuring because the order repository had a custom query that required a search keyword, and an order status of
@@ -63,3 +61,12 @@ enum type. See query below:
 
 ### Solution
 Non found yet
+
+# Legacy Order Time
+### Problem
+Due to the time the course was created, the order time was returning null orders based on current date. I had to
+modify the order time colum in MySQL by 770 days using the SQL query code below:
+
+UPDATE orders set order_time = adddate(order_time, 770) where id > 0;
+UPDATE orders set deliver_date = date_format(adddate(order_time, deliver_days + 1), '%Y-%m-%d') where id > 0;
+
