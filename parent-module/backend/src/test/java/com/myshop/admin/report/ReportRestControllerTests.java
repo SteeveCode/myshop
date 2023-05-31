@@ -36,10 +36,18 @@ public class ReportRestControllerTests {
 	@Test
 	@WithMockUser(username = "user1", password = "pass1", authorities = {"Salesperson"})
 	public void testGetReportDataByDateRange() throws Exception {
-		String startDate = "2023-05-01";
-		String endDate = "2023-05-30";
+		String startDate = "2021-09-01";
+		String endDate = "2021-09-30";
 		String requestURL = "/reports/sales_by_date/" + startDate + "/" + endDate;
 
+
+		mockMvc.perform(get(requestURL)).andExpect(status().isOk()).andDo(print());
+	}
+
+	@Test
+	@WithMockUser(username = "user1", password = "pass1", authorities = {"Salesperson"})
+	public void testGetReportDataByCategory() throws Exception {
+		String requestURL = "/reports/category/last_7_days";
 
 		mockMvc.perform(get(requestURL)).andExpect(status().isOk()).andDo(print());
 	}
