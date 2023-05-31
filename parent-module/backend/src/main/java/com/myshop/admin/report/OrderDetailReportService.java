@@ -14,32 +14,38 @@ import com.myshop.common.entity.order.OrderDetail;
 public class OrderDetailReportService extends AbstractReportService {
 
 	@Autowired private OrderDetailRepository repo;
-	
+
 	@Override
 	protected List<ReportItem> getReportDataByDateRangeInternal(
 			Date startDate, Date endDate, ReportType reportType) {
 		List<OrderDetail> listOrderDetails = null;
-		
+
 		if (reportType.equals(ReportType.CATEGORY)) {
 			listOrderDetails = repo.findWithCategoryAndTimeBetween(startDate, endDate);
+		} else if (reportType.equals(ReportType.PRODUCT)) {
+			listOrderDetails = repo.findWithProductAndTimeBetween(startDate, endDate);
 		}
-		
-		printRawData(listOrderDetails);
-		
+
+		//printRawData(listOrderDetails);
+
 		List<ReportItem> listReportItems = new ArrayList<>();
-		
+
 		for (OrderDetail detail : listOrderDetails) {
 			String identifier = "";
+
 			if (reportType.equals(ReportType.CATEGORY)) {
 				identifier = detail.getProduct().getCategory().getName();
+			} else if (reportType.equals(ReportType.PRODUCT)) {
+				identifier = detail.getProduct().getShortName();
 			}
+
 			ReportItem reportItem = new ReportItem(identifier);
-			
+
 			float grossSales = detail.getSubtotal() + detail.getShippingCost();
 			float netSales = detail.getSubtotal() - detail.getProductCost();
-			
+
 			int itemIndex = listReportItems.indexOf(reportItem);
-			
+
 			if (itemIndex >= 0) {
 				reportItem = listReportItems.get(itemIndex);
 				reportItem.addGrossSales(grossSales);
@@ -49,9 +55,9 @@ public class OrderDetailReportService extends AbstractReportService {
 				listReportItems.add(new ReportItem(identifier, grossSales, netSales, detail.getQuantity()));
 			}
 		}
-		
-		printReportData(listReportItems);
-		
+
+		//printReportData(listReportItems);
+
 		return listReportItems;
 	}
 
@@ -65,7 +71,7 @@ public class OrderDetailReportService extends AbstractReportService {
 	private void printRawData(List<OrderDetail> listOrderDetails) {
 		for (OrderDetail detail : listOrderDetails) {
 			System.out.printf("%d, %-20s, %10.2f, %10.2f, %10.2f \n",
-					detail.getQuantity(), detail.getProduct().getCategory().getName(),
+					detail.getQuantity(), detail.getProduct().getShortName().substring(0, 20),
 					detail.getSubtotal(), detail.getProductCost(), detail.getShippingCost());
 		}
 	}

@@ -70,3 +70,26 @@ modify the order time colum in MySQL by 770 days using the SQL query code below:
 UPDATE orders set order_time = adddate(order_time, 770) where id > 0;
 UPDATE orders set deliver_date = date_format(adddate(order_time, deliver_days + 1), '%Y-%m-%d') where id > 0;
 
+
+# Inconsistent Data in Database
+
+### Problem
+There were issues in the database data that made the amount in the sales report chart inconsistent.
+
+### Solution
+The author solve the running the SQL code below:
+
+#Order_Details Table:
+update order_details set subtotal = unit_price * quantity where id > 0;
+
+update order_details set product_cost = unit_price * 0.8 where id > 0;
+
+#Order table
+update orders o set o.subtotal = (select sum(d.subtotal) from order_details d where d.order_id=o.id) where o.id > 0;
+
+update orders o set o.product_cost = (select sum(d.product_cost * quantity) from order_details d where d.order_id=o.id) where o.id > 0;
+
+update orders o set o.shipping_cost = (select sum(d.shipping_cost) from order_details d where d.order_id=o.id) where o.id > 0;
+
+update orders set total = subtotal + tax + shipping_cost where id > 0;
+
