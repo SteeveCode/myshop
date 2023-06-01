@@ -62,6 +62,8 @@ public class Product extends IdBasedEntity {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductDetail> details = new ArrayList<>();
 
+    private int reviewCount;
+    private float averageRating;
 
     public Product(Integer id) {
         this.id = id;
@@ -240,6 +242,9 @@ public class Product extends IdBasedEntity {
         if (id == null || mainImage == null) return "/images/image-thumbnail.png";
 
         return "/product-images/" + this.id + "/" + this.mainImage;
+
+        // use the code below if you are referencing static image files from aws s3 bucket
+//        return Constants.S3_BASE_URI +"/product-images/" + this.id + "/" + this.mainImage;
     }
 
     public List<ProductDetail> getDetails() {
@@ -286,4 +291,21 @@ public class Product extends IdBasedEntity {
         }
         return this.price;
     }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(int reviewCount) {
+        this.reviewCount = reviewCount;
+    }
+
+    public float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(float averageRating) {
+        this.averageRating = averageRating;
+    }
+
 }

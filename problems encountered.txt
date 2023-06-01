@@ -93,3 +93,10 @@ update orders o set o.shipping_cost = (select sum(d.shipping_cost) from order_de
 
 update orders set total = subtotal + tax + shipping_cost where id > 0;
 
+NOTE:
+To insert fresh data into an existing sql table that has a foreign key relationship without altering the table structure,
+do the following:
+1. set foreign_key_checks = 0;
+2. truncate table orders;
+3. INSERT INTO orders VALUES(1, 'f_name', 'l_name', 'etc');
+4. set foreign_key_checks = 1;
