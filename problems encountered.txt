@@ -1,4 +1,4 @@
-## CIrcular Reference ##
+## Circular Reference ##
 
 ### Problem ###
 circular reference error at 167. Code Login with Google.
@@ -100,3 +100,12 @@ do the following:
 2. truncate table orders;
 3. INSERT INTO orders VALUES(1, 'f_name', 'l_name', 'etc');
 4. set foreign_key_checks = 1;
+
+## WebSecurityConfig ##
+### Problem
+A user with role of an assistant was unable to view products details page even though access to the endpoint had been
+granted. see security config below:
+  .requestMatchers("/products/detail/**", "/customers/detail/**").hasAnyAuthority("Admin", "Editor", "Salesperson", "Assistant")
+
+### Solution ###
+Non found yet.
