@@ -122,3 +122,22 @@ reviewed. See the sql query below:
 
 ### Solution ###
 I change the data type of the average rating field in the products class and products table from float to double.
+
+## MYSQL FULLTEXT INDEX MATCHING ##
+### Problem
+I was unable to search for product on the customer page. See the query and error below.
+Query:
+	@Query(value = "SELECT * FROM products WHERE enabled = true AND "
+			+ "MATCH(name, short_description, full_description) AGAINST (?1)",
+			nativeQuery = true)
+	public Page<Product> search(String keyword, Pageable pageable);
+Error:
+    java.sql.SQLException: Can't find FULLTEXT index matching the column list
+
+### Solution ###
+The error was as a result of using the "MATCH" function in my SQL query without configuring full text index on the
+columns I wanted to search from. I was able to fix the issue by using the Alter table commend below:
+    ALTER TABLE `myshopdb`.`products`
+    DROP INDEX `full_text_index` ,
+    ADD FULLTEXT INDEX `full_text_index` (`name`, `short_description`, `full_description`) VISIBLE;
+;
