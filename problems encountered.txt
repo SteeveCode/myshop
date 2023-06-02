@@ -109,3 +109,16 @@ granted. see security config below:
 
 ### Solution ###
 Non found yet.
+
+## Average_Rating Column in Products Table ##
+### Problem
+I had an issue deriving the average_rating value in the products table from the reviews table when a product has not been
+reviewed. See the sql query below:
+    @Query("Update Product p SET p.averageRating = COALESCE((SELECT AVG(r.rating) FROM Review r WHERE r.product.id = ?1), 0),"
+            + " p.reviewCount = (SELECT COUNT(r.id) FROM Review r WHERE r.product.id =?1) "
+            + "WHERE p.id = ?1")
+    @Modifying
+    public void updateReviewCountAndAverageRating(Integer productId);
+
+### Solution ###
+I change the data type of the average rating field in the products class and products table from float to double.

@@ -63,7 +63,7 @@ public class Product extends IdBasedEntity {
     private List<ProductDetail> details = new ArrayList<>();
 
     private int reviewCount;
-    private float averageRating;
+    private double averageRating;
 
     public Product(Integer id) {
         this.id = id;
@@ -300,7 +300,7 @@ public class Product extends IdBasedEntity {
         this.reviewCount = reviewCount;
     }
 
-    public float getAverageRating() {
+    public double getAverageRating() {
         return averageRating;
     }
 

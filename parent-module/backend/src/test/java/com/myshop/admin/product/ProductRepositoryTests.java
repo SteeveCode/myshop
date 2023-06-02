@@ -113,7 +113,7 @@ public class ProductRepositoryTests {
 
 	@Test
 	public void testSaveProductWithDetails() {
-		Integer productId = 2;
+		Integer productId = 1;
 		Product product = repo.findById(productId).get();
 
 		product.addDetail("Device Memory", "128 GB");
@@ -122,5 +122,11 @@ public class ProductRepositoryTests {
 
 		Product savedProduct = repo.save(product);
 		assertThat(savedProduct.getDetails()).isNotEmpty();
+	}
+
+	@Test
+	public void testUpdateReviewCountAndAverageRating() {
+		Integer productId = 2;
+		repo.updateReviewCountAndAverageRating(productId);
 	}
 }

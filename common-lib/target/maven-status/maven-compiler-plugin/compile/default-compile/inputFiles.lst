@@ -1,15 +1,33 @@
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/Category.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/Country.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/Currency.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/Product.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/exception/ProductNotFoundException.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/State.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/SettingCategory.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/ProductImage.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/Setting.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/exception/CategoryNotFoundException.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/SettingBag.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/Brand.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/User.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/ProductDetail.java
-/home/stevecode/Documents/web projects/learn/ecommerce-project/common-lib/src/main/java/com/myshop/common/entity/Role.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\product\ProductImage.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\AuthenticationType.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\product\ProductDetail.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\Address.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\order\OrderDetail.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\order\PaymentMethod.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\exception\ReviewNotFoundException.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\Category.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\setting\Setting.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\Country.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\IdBasedEntity.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\exception\CategoryNotFoundException.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\Customer.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\User.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\AbstractAddressWithCountry.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\exception\OrderNotFoundException.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\Currency.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\exception\CustomerNotFoundException.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\CartItem.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\State.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\order\OrderStatus.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\Role.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\Review.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\order\Order.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\setting\SettingBag.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\Brand.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\product\Product.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\StateDTO.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\AbstractAddress.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\exception\ProductNotFoundException.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\order\OrderTrack.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\setting\SettingCategory.java
+C:\Users\SteveCode\Documents\Web Projects\Learn\Ecommerce Project\myshop\common-lib\src\main\java\com\myshop\common\entity\ShippingRate.java
