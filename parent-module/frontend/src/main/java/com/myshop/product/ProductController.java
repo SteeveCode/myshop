@@ -2,8 +2,10 @@ package com.myshop.product;
 
 import java.util.List;
 
+import com.myshop.common.entity.Review;
 import com.myshop.common.exception.CategoryNotFoundException;
 import com.myshop.common.exception.ProductNotFoundException;
+import com.myshop.review.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProductController {
 	@Autowired private ProductService productService;
 	@Autowired private CategoryService categoryService;
+	@Autowired private ReviewService reviewService;
 
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable("category_alias") String alias,
@@ -67,9 +70,11 @@ public class ProductController {
 		try {
 			Product product = productService.getProduct(alias);
 			List<Category> listCategoryParents = categoryService.getCategoryParents(product.getCategory());
+			Page<Review> listReviews = reviewService.list3MostRecentReviewsByProduct(product);
 
 			model.addAttribute("listCategoryParents", listCategoryParents);
 			model.addAttribute("product", product);
+			model.addAttribute("listReviews", listReviews);
 			model.addAttribute("pageTitle", product.getShortName());
 
 			return "product/product_detail";
@@ -79,12 +84,12 @@ public class ProductController {
 	}
 
 	@GetMapping("/search")
-	public String searchFirstPage(@RequestParam("keyword") String keyword, Model model) {
+	public String searchFirstPage(String keyword, Model model) {
 		return searchByPage(keyword, 1, model);
 	}
 
 	@GetMapping("/search/page/{pageNum}")
-	public String searchByPage(@RequestParam("keyword") String keyword,
+	public String searchByPage(String keyword,
 							   @PathVariable("pageNum") int pageNum,
 							   Model model) {
 		Page<Product> pageProducts = productService.search(keyword, pageNum);
@@ -104,6 +109,7 @@ public class ProductController {
 		model.addAttribute("pageTitle", keyword + " - Search Result");
 
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("searchKeyword", keyword);
 		model.addAttribute("listResult", listResult);
 
 		return "product/search_result";

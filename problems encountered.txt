@@ -141,3 +141,22 @@ columns I wanted to search from. I was able to fix the issue by using the Alter 
     DROP INDEX `full_text_index` ,
     ADD FULLTEXT INDEX `full_text_index` (`name`, `short_description`, `full_description`) VISIBLE;
 ;
+
+## Fragment URL Identifier ##
+### Problem
+Page not available. The author define uri in the product class that was used in the product details view in the form
+of a fragment url as seen below:
+Product Class:
+  public String getURI() {
+        return "/p/" + this.alias + "/";
+    }
+Product View Page:
+    <a th:href="@{${product.URI} + '#review'}">
+
+### Solution ###
+The solution to why the page was not available in the view layer was addressed by correcting the wrong URI format used
+by the author in the product class. See the correct format below:
+Product Class:
+  public String getURI() {
+        return "/p/" + this.alias;
+    }
