@@ -20,7 +20,7 @@ public class Review extends IdBasedEntity {
 	@Column(length = 300, nullable = false)
 	private String comment;
 	
-	private int rating;	
+	private int rating;
 	
 	@Column(nullable = false)
 	private Date reviewTime;

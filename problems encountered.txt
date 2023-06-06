@@ -121,7 +121,7 @@ reviewed. See the sql query below:
     public void updateReviewCountAndAverageRating(Integer productId);
 
 ### Solution ###
-I change the data type of the average rating field in the products class and products table from float to double.
+I change the data type of the average rating field in the product class and products table from float to double.
 
 ## MYSQL FULLTEXT INDEX MATCHING ##
 ### Problem
