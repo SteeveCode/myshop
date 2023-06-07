@@ -2,6 +2,7 @@ package com.myshop.product;
 
 import java.util.List;
 
+import com.myshop.ControllerHelper;
 import com.myshop.Utility;
 import com.myshop.common.entity.Customer;
 import com.myshop.common.entity.Review;
@@ -27,7 +28,7 @@ public class ProductController {
 	@Autowired private ProductService productService;
 	@Autowired private CategoryService categoryService;
 	@Autowired private ReviewService reviewService;
-	@Autowired private CustomerService customerService;
+	@Autowired private ControllerHelper controllerHelper;
 
 	@GetMapping("/c/{category_alias}")
 	public String viewCategoryFirstPage(@PathVariable("category_alias") String alias,
@@ -78,14 +79,17 @@ public class ProductController {
 			List<Category> listCategoryParents = categoryService.getCategoryParents(product.getCategory());
 			Page<Review> listReviews = reviewService.list3MostRecentReviewsByProduct(product);
 
-			Customer customer = getAuthenticatedCustomer(request);
-			boolean customerReviewed = reviewService.didCustomerReviewProduct(customer, product.getId());
+			Customer customer = controllerHelper.getAuthenticatedCustomer(request);
 
-			if (customerReviewed) {
-				model.addAttribute("customerReviewed", customerReviewed);
-			} else {
-				boolean customerCanReview = reviewService.canCustomerReviewProduct(customer, product.getId());
-				model.addAttribute("customerCanReview", customerCanReview);
+			if (customer != null) {
+				boolean customerReviewed = reviewService.didCustomerReviewProduct(customer, product.getId());
+
+				if (customerReviewed) {
+					model.addAttribute("customerReviewed", customerReviewed);
+				} else {
+					boolean customerCanReview = reviewService.canCustomerReviewProduct(customer, product.getId());
+					model.addAttribute("customerCanReview", customerCanReview);
+				}
 			}
 
 			model.addAttribute("listCategoryParents", listCategoryParents);
@@ -129,10 +133,5 @@ public class ProductController {
 		model.addAttribute("listResult", listResult);
 
 		return "product/search_result";
-	}
-
-	private Customer getAuthenticatedCustomer(HttpServletRequest request) {
-		String email = Utility.getEmailOfAuthenticatedCustomer(request);
-		return customerService.getCustomerByEmail(email);
 	}
 }
