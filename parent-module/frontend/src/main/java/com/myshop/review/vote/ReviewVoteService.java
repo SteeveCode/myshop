@@ -2,6 +2,7 @@ package com.myshop.review.vote;
 
 import java.util.NoSuchElementException;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import com.myshop.common.entity.ReviewVote;
 import com.myshop.review.ReviewRepository;
 
 @Service
+@Transactional
 public class ReviewVoteService {
 	
 	@Autowired private ReviewRepository reviewRepo;
