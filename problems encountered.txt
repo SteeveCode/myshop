@@ -162,8 +162,12 @@ Product Class:
         return "/p/" + this.alias;
     }
 
+
     # Spring MVC Test with SecurityFilterChain Bean ##
     ### Problem
     When trying to do a test with SpringMVC @WithMockUser(username = "tina.jamerson.2021@gmail.com", password = "nam2020")
     annotation using the new SecurityFileterChain @Bean, it doesn't provide authorized user in spring test and as a
     result the authenticated user returned null.
+
+    ### Solution ###
+    Non found yet.
