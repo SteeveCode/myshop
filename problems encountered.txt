@@ -171,3 +171,11 @@ Product Class:
 
     ### Solution ###
     Non found yet.
+
+   # Custom FilterChain Off ##
+   ### Observation
+   This is not a problem per se. I had commented out the custom security filter chain(doFilter()) in the settingFilter
+   config class. This prevented my from being load the home page or any other page of the frontend application even
+   though the application was running.  I was able load the view pages after uncommenting the doFilter() method.
+
+
